@@ -1,6 +1,10 @@
 <template>
-  <div>我是页面2
-    <pagetwo-child></pagetwo-child>
+  <div>
+    <pagetwo-child
+      :myself="myselfdata"
+      :son="sondata"
+      :grandson="grandsondata"
+    ></pagetwo-child>
   </div>
 </template>
 
@@ -8,11 +12,16 @@
 import PagetwoChild from "./PageTwoChild.vue";
 export default {
   data() {
-    return {};
+    return {
+      myselfdata: '1',
+      sondata: '2',
+      grandsondata: { info: "我是儿子" },
+    };
   },
-  components:{
-      PagetwoChild
-  }
+  components: {
+    PagetwoChild,
+  },
+  methods: {},
 };
 </script>
 
