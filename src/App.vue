@@ -5,7 +5,8 @@
       <router-link to="/about" active-class="active">Vuex</router-link>|
       <router-link to="/pageone/5" active-class="active">Router</router-link>|
       <router-link to="/pagetwo" active-class="active">pagetwo</router-link>|
-      <router-link to="/pagethree" active-class="active">Table</router-link>
+      <router-link to="/pagethree" active-class="active">Table</router-link>|
+      <router-link to="/SlotTest" active-class="active">Slot</router-link>
       <div >
       </div>
     </div>

@@ -39,6 +39,13 @@ const routes = [
     component: resolve => require(['../views/PageThree.vue'],resolve),
     meta:{title:'页面3'}
   },
+  {
+    path: '/slottest',
+    name: 'SlotTest',
+    // 路由懒加载
+    component: resolve => require(['../views/SlotTest.vue'],resolve),
+    meta:{title:'插槽练习'}
+  },
 ]
 
 const router = new VueRouter({
