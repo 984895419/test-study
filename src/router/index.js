@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import PageTwo from '../views/PageTwo.vue'
 
 Vue.use(VueRouter)
 
@@ -19,33 +18,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
   },
-  {
-    path: '/pageone/:id',
-    name: 'PageOne',
-    // 按需加载路由   不利于打包   后期组件多了会影响打包速度
-    component: resolve => require(['../views/PageOne.vue'],resolve),
-  },
-  {
-    path: '/pagetwo',
-    name: 'PageTwo',
-    // 路由懒加载
-    component: resolve => require(['../views/PageTwo.vue'],resolve),
-    meta:{title:'页面2'}
-  },
-  {
-    path: '/pagethree',
-    name: 'PageThree',
-    // 路由懒加载
-    component: resolve => require(['../views/PageThree.vue'],resolve),
-    meta:{title:'页面3'}
-  },
-  {
-    path: '/slottest',
-    name: 'SlotTest',
-    // 路由懒加载
-    component: resolve => require(['../views/SlotTest.vue'],resolve),
-    meta:{title:'插槽练习'}
-  },
+ 
 ]
 
 const router = new VueRouter({
