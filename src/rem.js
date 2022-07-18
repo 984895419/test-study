@@ -26,13 +26,16 @@
       const clientWidth = docEl.clientWidth
       const clientHeight = docEl.clientHeight
       if (!clientHeight || !clientWidth) return
-  
+      //设计稿尺寸为 横版 2500 * 1080 (1920*1080)
+      //             竖版 1080 * 1920   750*1334   375 * 667   
+      //为了获取这个html的font-size
       if (clientWidth > clientHeight) {
         docEl.style.fontSize = 100 * (clientWidth / 1920) + 'px'
       } else {
         docEl.style.fontSize = 100 * (clientWidth / 1080) + 'px'
       }
       document.body.style.visibility = 'visible'
+      document.body.style.margin = '0'
     }
     if (!doc.addEventListener) return
   

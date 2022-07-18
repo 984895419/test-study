@@ -1,20 +1,27 @@
 (function(win, lib) {
+    //定义文档的根节点
     var doc = win.document;
     var docEl = doc.documentElement;
+    //查询符合条件的meta标签
     var metaEl = doc.querySelector('meta[name="viewport"]');
     var flexibleEl = doc.querySelector('meta[name="flexible"]');
+    //定义适配的参数
     var dpr = 0;
     var scale = 0;
     var tid;
     var flexible = lib.flexible || (lib.flexible = {});
-     
+    //开始动我们的meta标签了
     if (metaEl) {
         console.warn('将根据已有的meta标签来设置缩放比例');
+        //这里会把meta标签的content属性内容转化为一个数组
         var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+        //如果我们的content中有值
         if (match) {
+            //按照默认设置，这里的dpr和scale都为1
             scale = parseFloat(match[1]);
             dpr = parseInt(1 / scale);
         }
+      //和上面同理
     } else if (flexibleEl) {
         var content = flexibleEl.getAttribute('content');
         if (content) {
@@ -54,6 +61,7 @@
         metaEl = doc.createElement('meta');
         metaEl.setAttribute('name', 'viewport');
         metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+       //这里就是判断是否存在<head>标签
         if (docEl.firstElementChild) {
             docEl.firstElementChild.appendChild(metaEl);
         } else {
@@ -62,15 +70,20 @@
             doc.write(wrap.innerHTML);
         }
     }
+    // 核心代码
     function refreshRem(){
+        //这里的width通俗理解就是页面缩放前的宽度
         var width = docEl.getBoundingClientRect().width;
+        //width超过540时达到最大值，会影响到之后根字体的最大值。
         if (width / dpr > 540) {
             width = 540 * dpr;
         }
+        //flexible中对rem的计算方式，除以十我认为是为了方便计算
         var rem = width / 10;
         docEl.style.fontSize = rem + 'px';
         flexible.rem = win.rem = rem;
     }
+    //监听页面的变化，触发refreshRem方法
     win.addEventListener('resize', function() {
         clearTimeout(tid);
         tid = setTimeout(refreshRem, 300);
@@ -81,6 +94,7 @@
             tid = setTimeout(refreshRem, 300);
         }
     }, false);
+    //它建议我们各类组件和容器的宽高布局使用rem单位，而对于字体使用px
     if (doc.readyState === 'complete') {
         doc.body.style.fontSize = 12 * dpr + 'px';
     } else {
@@ -99,6 +113,7 @@
         }
         return val;
     }
+    //px to rem
     flexible.px2rem = function(d) {
         var val = parseFloat(d) / this.rem;
         if (typeof d === 'string' && d.match(/px$/)) {

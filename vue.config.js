@@ -41,7 +41,7 @@ module.exports = {
     devServer: {
       open: process.platform === 'darwin',
       disableHostCheck: true,
-      host: 'www.test.com',//如果是真机测试，就使用这个IP
+      host: 'localhost',//如果是真机测试，就使用这个IP
       port: 1234,
       https: false,
       hotOnly: false,
