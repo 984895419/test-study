@@ -6,7 +6,10 @@
       <router-link to="/pageone/5" active-class="active">Router</router-link>|
       <router-link to="/pagetwo" active-class="active">pagetwo</router-link>|
       <router-link to="/pagethree" active-class="active">Table</router-link>|
-      <router-link to="/SlotTest" active-class="active">Slot</router-link>
+      <router-link to="/SlotTest" active-class="active">Slot</router-link>|
+      <router-link to="/Test" active-class="active">Test</router-link>|
+      <router-link to="/Vh" active-class="active">Vh</router-link>|
+      <router-link to="/Percentage" active-class="active">Percentage</router-link>|
       <div >
       </div>
     </div>
@@ -26,7 +29,10 @@
   text-align: center;
   color: #2c3e50;
 }
-
+*{
+    margin: 0;
+    padding: 0;
+}
 #nav {
   padding: 30px;
 

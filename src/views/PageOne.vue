@@ -1,7 +1,8 @@
 <template>
    <div > 
-      <button class="" @click="PushPageTwo()">+1</button>
+      <button class="" @click="PushPageTwo()">+1</button>123123132
       {{this.$route.params.id}}
+
    </div>
 </template>
 
@@ -12,10 +13,14 @@ export default {
 
        }
    },
+ 
    methods:{
        PushPageTwo(){
         //    this.$route.push({name:'pagetwo',params:{id:5}})
        }
+   },
+   created(){
+
    }
 }
 </script>

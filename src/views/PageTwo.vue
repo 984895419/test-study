@@ -5,6 +5,8 @@
       :son="sondata"
       :grandson="grandsondata"
     ></pagetwo-child>
+          {{id}}
+      {{value1}}
   </div>
 </template>
 
@@ -18,6 +20,10 @@ export default {
       grandsondata: { info: "我是儿子" },
     };
   },
+  props:[
+    'id',
+    'value1'
+  ],
   components: {
     PagetwoChild,
   },

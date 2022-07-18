@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import PageTwo from '../views/PageTwo.vue'
 
 Vue.use(VueRouter)
 
@@ -30,7 +29,11 @@ const routes = [
     name: 'PageTwo',
     // 路由懒加载
     component: resolve => require(['../views/PageTwo.vue'],resolve),
-    meta:{title:'页面2'}
+    meta:{title:'页面2'},
+    props:{
+      id:'111',
+      value1:'我是页面2的内容'
+    }
   },
   {
     path: '/pagethree',
@@ -45,6 +48,27 @@ const routes = [
     // 路由懒加载
     component: resolve => require(['../views/SlotTest.vue'],resolve),
     meta:{title:'插槽练习'}
+  },
+  {
+    path: '/Test',
+    name: 'Test',
+    // 路由懒加载
+    component: resolve => require(['../views/Test.vue'],resolve),
+    meta:{title:'test'}
+  },
+  {
+    path: '/vh',
+    name: 'Vh',
+    // 路由懒加载
+    component: resolve => require(['../views/vh.vue'],resolve),
+    meta:{title:'vh'}
+  },
+  {
+    path: '/Percentage',
+    name: 'Percentage',
+    // 路由懒加载
+    component: resolve => require(['../views/Percentage.vue'],resolve),
+    meta:{title:'Percentage'}
   },
 ]
 
