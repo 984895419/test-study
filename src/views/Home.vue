@@ -2,7 +2,7 @@
   <div class="home">
     <div class="header">
       <div class="header__lf" @click="gohome()"> </div>
-      <div class="header__title">顺风车</div>
+      <div class="header__title">{{$route.meta.title}}</div>
       <div class="header__rt"></div>
     </div>
     <div class="main">
@@ -23,7 +23,7 @@
           <div class="address">
             {{ item.departurePlace }}———{{ item.destination }}
           </div>
-          <div class="btns">查看</div>
+          <div class="btns" @click="viewDetails(item)">查看</div>
         </div>
       </div>
     </div>
@@ -83,6 +83,9 @@ export default {
   methods: {
     gohome() {
       this.$router.push('/myself')
+    },
+    viewDetails(data){
+        this.$router.push('/info')
     }
   },
   mounted() {

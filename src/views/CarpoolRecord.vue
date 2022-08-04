@@ -1,5 +1,5 @@
 <template>
-   <div class="page">我是购物车</div>
+   <div class="page">拼车记录</div>
 </template>
 
 <script>

@@ -3,7 +3,7 @@
   <div class="page">
     <div class="header"></div>
     <div class="main">
-       我是分类
+       发布记录
     </div>
   </div>
 </template>
