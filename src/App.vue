@@ -1,12 +1,17 @@
 <template >
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <!-- 缓存组件 -->
+      <router-view v-if="$route.meta.KeepAlive" />
+    </keep-alive>
+    <!-- 非缓存组件 -->
+    <router-view v-if="!$route.meta.KeepAlive" />
     <!-- 底部tabbar  菜单 -->
     <div class="tabbar">
       <router-link class="tabbar__item" v-for="(item, index) in tabbarList" :key="index" :to="{ name: item.urlpath }"
         active-class="_active" exact>
         <div class="tabbar__item-icon">
-          <img :src="`${item.icopath}`" alt="">
+          <img :src="item.icopath" alt="">
         </div>
         <div class="tabbar__item-name">{{ item.name }}</div>
       </router-link>
@@ -18,27 +23,48 @@ export default {
   data() {
     return {
       tabbarList: [
-        { icopath: "../assets/logo.png", name: '首页', urlpath: "Home" },
-        { icopath: "../assets/logo.png", name: '兑换中心', urlpath: "MoneyChanger" },
-        { icopath: "../assets/logo.png", name: '分类', urlpath: "Classification" },
-        { icopath: "../assets/logo.png", name: '购物车', urlpath: "ShoppingCart" },
-        { icopath: "../assets/logo.png", name: '我的', urlpath: "Myself" },
+        { icopath: require("./assets/images/ico-car2.png"), name: '顺风车', urlpath: "Home" },
+        // { icopath: require("./assets/images/ico-cuz.png"), name: '分类', urlpath: "Classification" },
+        { icopath: require("./assets/images/ico-tx2.png"), name: '我的', urlpath: "Myself" },
       ],
+      tel: '',
+      text: '',
+      digit: '',
+      number: '',
+      password: '',
+      isRouterAlive: true
     }
+  },
+  provide() {
+    return {
+      reload: this.reload
+    };
+  },
+  methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(() => {
+        this.isRouterAlive = true;
+      });
+    },
+
   }
 }
 
 </script>
 
 <style lang="less" scoped>
+@tycolor: rgb(236, 195, 67);
 body {
   margin: 0 !important;
 }
-
+.tabbar__item{
+  color: rgb(117,117,117);
+}
 ._active {
 
   //表示router-link激活选中时的状态
-  color: pink;
+  color: @tycolor;
 
 }
 
@@ -48,7 +74,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: green;
+  background: rgb(241, 242, 246);
   width: 100%;
   height: 100vh;
 }
@@ -73,34 +99,42 @@ body,
   }
 }
 
+.header {
+  height: 1rem;
+  background: white;
+  width: 100%;
+}
+
 .tabbar {
   position: fixed;
   bottom: 0;
-  height: 1.1rem;
+  height: 1.6rem;
   display: flex;
   font-size: .36rem;
-  background: red;
+  background: white;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 0 .2rem;
+  padding: 0 .5rem;
   box-sizing: border-box;
 
   &__item {
-    background: yellow;
     display: block;
-
-
 
     &-icon {
       display: block;
-      width: .2rem;
-      height: .2rem;
+      margin: 0 auto;
+      width: .8rem;
+      height: .8rem;
 
       img {
-        height: .2rem;
+        height: .8rem;
         object-fit: cover;
       }
+    }
+
+    &-name {
+      // color: rgb(117, 117, 117);
     }
 
 

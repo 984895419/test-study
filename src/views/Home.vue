@@ -1,44 +1,30 @@
 <template>
   <div class="home">
     <div class="header">
-
-      <div class="header__lf"></div>
-      <input class="header__search" />
+      <div class="header__lf" @click="gohome()"> </div>
+      <div class="header__title">顺风车</div>
       <div class="header__rt"></div>
     </div>
     <div class="main">
-      <div class="banner">
-        <!-- swiper 轮播图 -->
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            <div class="swiper-slide">Slide 7</div>
-            <div class="swiper-slide">Slide 8</div>
-            <div class="swiper-slide">Slide 9</div>
-            <div class="swiper-slide">Slide 10</div>
+      <div class="search">
+        <input type="text" >
+        <div class="icon"></div>
+      </div>
+      <div class="list">
+        <div class="items" v-for=" (item, index) in recordList" :key="index">
+          <div class="info">
+            <div class="info-lf">
+              {{ item.departureTime }}
+            </div>
+            <div class="info-rt">
+              还可拼<span class="rt-red">{{ item.resrNum }}</span>人
+            </div>
           </div>
-          <!-- Add Pagination -->
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-      <div class="iconlist">
-        <div class="items" v-for="(item, index) in iconList" :key="index">
-          <div class="items__ico">
-            <img class="items__ico-img" :src="item.icopath" />
+          <div class="address">
+            {{ item.departurePlace }}———{{ item.destination }}
           </div>
-          <div class="items__label">{{ item.name }}</div>
+          <div class="btns">查看</div>
         </div>
-      </div>
-      <div class="nowactivity">
-        当前活动
-      </div>
-      <div class="recommend">
-        更多的业务页面
       </div>
     </div>
 
@@ -71,7 +57,32 @@ export default {
         { icopath: "../assets/logo.png", name: '电脑数码' },
         { icopath: "../assets/logo.png", name: '家居家装' },
         { icopath: "../assets/logo.png", name: '农特生鲜' },
+      ],
+      recordList: [
+        {
+          departureTime: " 6月1日 09:45 ",
+          resrNum: "3",
+          departurePlace: "莆田动车站",
+          destination: "仙游动车站"
+        },
+        {
+          departureTime: " 6月23日 09:45 ",
+          resrNum: "3",
+          departurePlace: "语湖中心",
+          destination: "正荣财富中心"
+        },
+        {
+          departureTime: " 6月3日 09:45 ",
+          resrNum: "3",
+          departurePlace: "廉租房",
+          destination: "汽车站"
+        }
       ]
+    }
+  },
+  methods: {
+    gohome() {
+      this.$router.push('/myself')
     }
   },
   mounted() {
@@ -86,13 +97,15 @@ export default {
 }
 </script>
 <style scoped lang="less">
+@tycolor: rgb(236, 195, 67);
+
 .home {
   font-size: 0.4rem;
   color: white;
 
   .header {
     height: 1.5rem;
-    background: red;
+    background: @tycolor;
     display: flex;
     padding: 0 0.2rem;
     box-sizing: border-box;
@@ -100,97 +113,147 @@ export default {
     align-items: center;
 
     &__lf {
-      width: 0.8rem;
-      height: 0.8rem;
-      background: blue;
+      width: 1.1rem;
+      height: 1.1rem;
+      background: url('../assets/images/ico-tx1.png')no-repeat;
+      background-size: 100%;
+    }
+
+    &__title {
+      width: calc(100% - 2rem);
+      font-size: 0.5rem;
     }
 
     &__search {
-      width: calc(100% - 2rem);
+      width: calc(100% - 2.6rem);
       height: 0.7rem;
       border-radius: 1rem;
       border: none;
       outline: none;
+      color: black;
       padding: 0 0.3rem;
       box-sizing: border-box;
     }
 
     &__rt {
-      width: 0.8rem;
-      height: 0.8rem;
-      background: blue;
+      width: 1.1rem;
+      height: 1.1rem;
+      // background: blue;
     }
   }
 
   .main {
     height: calc(100vh - 2.6rem);
-    background: rebeccapurple;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding-top: 0.2rem;
 
-    .banner {
-      height: 3rem;
-      background: orange;
-      margin-top: 0.2rem;
-      box-sizing: border-box;
-    }
-
-    .iconlist {
+    .search {
+      position: relative;
+      width: calc(100% - 0.6rem);
+      height: 1rem;
+      margin: 0 auto 0;
+      border-radius: 0.2rem;
+      background: white;
+      box-shadow: 0.02rem 0.02rem 0.1rem rgba(0, 0, 0, 0.3);
       display: flex;
-      flex-wrap: wrap;
-      padding: 0.2rem 0.2rem 0;
-      justify-items: center;
-      box-sizing: border-box;
-      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      justify-content: center;
 
-      .items {
-        width: calc(20% - 0.1rem);
-        margin: 0.1rem 0;
-        min-height: 1.2rem;
-        background: green;
-        font-size: 0.3rem;
+      input {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto 0;
 
-        &__ico {
-          width: 0.5rem;
-          height: 0.5rem;
-          background: fuchsia;
-          margin: 0.1rem auto;
-        }
+        color: black;
+        padding: 0 0.3rem;
+        box-sizing: border-box;
+      }
+
+      .icon {
+        position: absolute;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: url('../assets/images/ico-search.png')no-repeat;
+        background-size: 100%;
+      }
+
+      .word {
+        color: black;
+        margin-left: 0.2rem;
       }
     }
 
-    .nowactivity {
-      background: pink;
-      height: 2rem;
-      width: calc(100% - 0.4rem);
-      margin: 0.2rem auto 0;
-    }
+    .list {
+      width: calc(100% - 0.6rem);
+      margin: 0 auto;
+      padding: 0.2rem 0;
+      box-sizing: border-box;
 
-    .recommend {
-      height: 8rem;
-      background: salmon;
-      margin: 0.2rem auto 0.2rem;
-      width: calc(100% - 0.4rem);
-    }
+      .items {
+        min-height: 3rem;
+        color: black;
+        background: white;
+        padding: 0.3rem;
+        border-radius: 0.2rem;
+        box-sizing: border-box;
+        margin-top: 0.4rem;
+        box-shadow: 0.06rem 0.06rem 0.2rem rgba(0, 0, 0, 0.3);
 
-    &::-webkit-scrollbar {
-      display: none;
+        &:first-child {
+          margin-top: 0;
+        }
+
+        .info {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+
+          &-lf {
+            font-size: 0.55rem;
+          }
+
+          &-rt {
+            .rt-red {
+              color: red;
+            }
+          }
+        }
+
+        .address {
+          margin: 0.3rem 0rem;
+          font-weight: 600;
+          font-size: 0.45rem;
+          padding: 0 0.35rem;
+          box-sizing: border-box;
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: '';
+            width: 0.3rem;
+            height: 0.3rem;
+            background: green;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+          }
+        }
+
+        .btns {
+          width: 50%;
+          margin: 0.3rem auto 0.1rem;
+          color: white;
+          height: 0.8rem;
+          background: @tycolor;
+          line-height: 0.8rem;
+          border-radius: 0.3rem;
+        }
+      }
+
     }
   }
-
-
-}
-
-.swiper-container {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 0.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>

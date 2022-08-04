@@ -14,6 +14,10 @@ import './assets/less/gb.less'
 import './orientation'  //横竖屏翻转动画
 import './swiper.min.css' 
 
+import { Field } from 'vant';
+
+Vue.use(Field);
+
 new OrientationMobile({
   dir: 'landscape', // vertical 竖屏 landscape 横屏
   tip: '请翻转屏幕' // 提示语

@@ -8,7 +8,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta:{
+      keepAlive:false
+    }
   },
   {
     path: '/about',
@@ -16,24 +19,19 @@ const routes = [
     component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/moneychanger',
-    name: 'MoneyChanger',  //兑换中心
-    component: () => import( /* webpackChunkName: "about" */ '../views/MoneyChanger.vue')
-  },
-  {
     path: '/classification',//分类
     name: 'Classification',
     component: () => import( /* webpackChunkName: "about" */ '../views/Classification.vue')
   },
   {
-    path: '/shoppingcart',//购物车
-    name: 'ShoppingCart',
-    component: () => import( /* webpackChunkName: "about" */ '../views/ShoppingCart.vue')
-  },
-  {
     path: '/myself',//我的
     name: 'Myself',
     component: () => import( /* webpackChunkName: "about" */ '../views/Myself.vue')
+  },
+  {
+    path: '/info',//我的
+    name: 'Info',
+    component: () => import( /* webpackChunkName: "about" */ '../views/Info.vue')
   },
  
 ]
