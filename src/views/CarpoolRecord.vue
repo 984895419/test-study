@@ -6,13 +6,41 @@
       <div class="header__rt"></div>
     </div>
     <div class="main">
-
+       <card :data="recordList" />
     </div>
   </div>
 </template>
 
 <script>
+import card from '../components/Card.vue'
 export default {
+  components:{
+    card
+  },
+  data(){
+    return{
+      recordList: [
+        {
+          departureTime: " 6月1日 09:45 ",
+          resrNum: "3",
+          departurePlace: "莆田动车站111",
+          destination: "仙游动车站"
+        },
+        {
+          departureTime: " 6月23日 09:45 ",
+          resrNum: "3",
+          departurePlace: "语湖中心222",
+          destination: "正荣财富中心"
+        },
+        {
+          departureTime: " 6月3日 09:45 ",
+          resrNum: "3",
+          departurePlace: "廉租房333",
+          destination: "汽车站"
+        }
+      ]
+    }
+  },
   methods: {
     routerGoBack() {
       this.$router.go(-1)

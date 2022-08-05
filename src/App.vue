@@ -24,7 +24,6 @@ export default {
     return {
       tabbarList: [
         { icopath: require("./assets/images/ico-car2.png"), name: '顺风车', urlpath: "Home" },
-        // { icopath: require("./assets/images/ico-cuz.png"), name: '分类', urlpath: "Classification" },
         { icopath: require("./assets/images/ico-tx2.png"), name: '我的', urlpath: "Myself" },
       ],
       tel: '',

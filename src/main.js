@@ -7,7 +7,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './rem' //获取html font-size
 import './assets/less/gb.css'
 import './orientation'  //横竖屏翻转动画
-import './swiper.min.css' 
 
 
 import Vant from 'vant';

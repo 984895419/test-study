@@ -2,62 +2,30 @@
   <div class="home">
     <div class="header">
       <div class="header__lf" @click="gohome()"> </div>
-      <div class="header__title">{{$route.meta.title}}</div>
+      <div class="header__title">{{ $route.meta.title }}</div>
       <div class="header__rt"></div>
     </div>
     <div class="main">
       <div class="search">
-        <input type="text" >
+        <input type="text">
         <div class="icon"></div>
       </div>
-      <div class="list">
-        <div class="items" v-for=" (item, index) in recordList" :key="index">
-          <div class="info">
-            <div class="info-lf">
-              {{ item.departureTime }}
-            </div>
-            <div class="info-rt">
-              还可拼<span class="rt-red">{{ item.resrNum }}</span>人
-            </div>
-          </div>
-          <div class="address">
-            {{ item.departurePlace }}———{{ item.destination }}
-          </div>
-          <div class="btns" @click="viewDetails(item)">查看</div>
-        </div>
-      </div>
+      <card :data="recordList" />
     </div>
 
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
-import Swiper from "swiper"
+import card from '../components/Card.vue'
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
-    Swiper,
-
+    card
   },
   data() {
     return {
-
-      iconList: [
-        { icopath: "../assets/logo.png", name: '美妆个护' },
-        { icopath: "../assets/logo.png", name: '瓜分积分' },
-        { icopath: "../assets/logo.png", name: '分享赚' },
-        { icopath: "../assets/logo.png", name: 'PLUS会员' },
-        { icopath: "../assets/logo.png", name: '云风客服' },
-        { icopath: "../assets/logo.png", name: '母婴玩具' },
-        { icopath: "../assets/logo.png", name: '服饰鞋饰' },
-        { icopath: "../assets/logo.png", name: '电脑数码' },
-        { icopath: "../assets/logo.png", name: '家居家装' },
-        { icopath: "../assets/logo.png", name: '农特生鲜' },
-      ],
       recordList: [
         {
           departureTime: " 6月1日 09:45 ",
@@ -84,19 +52,11 @@ export default {
     gohome() {
       this.$router.push('/myself')
     },
-    viewDetails(data){
-        this.$router.push('/info')
+    viewDetails(data) {
+      this.$router.push('/info')
     }
   },
-  mounted() {
-    new Swiper('.swiper-container', {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      paginationClickable: true,
-    });
-  }
+
 }
 </script>
 <style scoped lang="less">
