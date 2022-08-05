@@ -19,11 +19,6 @@ const routes = [{
     component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/releaseRecord', //分类
-    name: 'Releaserecord',
-    component: () => import( /* webpackChunkName: "about" */ '../views/ReleaseRecord.vue')
-  },
-  {
     path: '/myself', //我的
     name: 'Myself',
     component: () => import( /* webpackChunkName: "about" */ '../views/Myself.vue')
@@ -45,11 +40,19 @@ const routes = [{
     }
   },
   {
-    path: '/ReleaseRecord', //发布记录
+    path: '/releaseRecord', //发布记录
     name: 'ReleaseRecord',
     component: () => import( /* webpackChunkName: "about" */ '../views/ReleaseRecord.vue'),
     meta: {
       title: "发布记录"
+    }
+  },
+  {
+    path: '/config', //设置
+    name: 'config',
+    component: () => import( /* webpackChunkName: "about" */ '../views/Config.vue'),
+    meta: {
+      title: "个人设置"
     }
   },
 

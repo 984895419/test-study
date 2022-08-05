@@ -8,17 +8,17 @@
       </div>
     </div>
     <div class="list">
-      <div class="items">
+      <div class="items" @click="pushCarpooling()">
         <div class="items-ico">
         </div>
         <div class="items-name">拼车记录</div>
       </div>
-      <div class="items">
+      <div class="items" @click="pushRelease()">
         <div class="items-ico">
         </div>
         <div class="items-name">发布记录</div>
       </div>
-      <div class="items" @click="pushconfig()">
+      <div class="items" @click="pushConfig()">
         <div class="items-ico">
         </div>
         <div class="items-name">设置</div>
@@ -29,15 +29,20 @@
 
 <script>
 export default {
-  inject:['reload'],
-  created(){
+  inject: ['reload'],
+  created() {
   },
-  mounted(){
+  mounted() {
   },
-  methods:{
-    pushconfig(){
-     this.$router.go(0)
-     this.reload()
+  methods: {
+    pushCarpooling() {
+      this.$router.push('/carpoolrecord')
+    },
+    pushRelease() {
+      this.$router.push('/releaseRecord')
+    },
+    pushConfig() {
+      this.$router.push('/config')
     }
   }
 }

@@ -4,19 +4,15 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-// import 'lib-flexible/flexible'
-
-// 
 import './rem' //获取html font-size
-// import './flexible' //获取html font-size
-// import './flexible.css' //获取html font-size
-import './assets/less/gb.less'
+import './assets/less/gb.css'
 import './orientation'  //横竖屏翻转动画
 import './swiper.min.css' 
 
-import { Field } from 'vant';
 
-Vue.use(Field);
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
 
 new OrientationMobile({
   dir: 'landscape', // vertical 竖屏 landscape 横屏
